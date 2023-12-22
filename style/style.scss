@@ -5393,6 +5393,16 @@ body.main-page {
         max-width: min(1072px, 80vw);
         text-align: center;
 
+        &-content {
+            opacity: 0;
+
+            .number-fond__item.swiper-slide-active & {
+                opacity: 1;
+            }
+
+            transition: opacity 0.3s;
+        }
+
         &.hidden {
             display: none !important
         }
@@ -5433,8 +5443,13 @@ body.main-page {
             font-size: 18px;
             font-style: normal;
             font-weight: 500;
-            line-height: 28px;
-            /* 155.556% */
+            line-height: 155.556%;
+
+            @media(max-width:992px) {
+                font-size: 14px;
+                margin-bottom: 20px;
+            }
+
             letter-spacing: 0.36px;
             margin-bottom: 40px;
         }
