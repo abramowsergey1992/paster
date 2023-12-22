@@ -4695,6 +4695,13 @@ body.noscroll {
     border-bottom: 1px solid #B5B6B7;
 }
 
+.wedding__modal-column textarea {
+    width: 100%;
+    height: 100px;
+    border: unset;
+    border-bottom: 1px solid #B5B6B7;
+}
+
 .wedding__modal-column input::placeholder {
     font-family: Manrope;
     font-size: 18px;
@@ -4703,6 +4710,14 @@ body.noscroll {
     letter-spacing: 0.1em;
     text-align: left;
     color: #616569;
+}
+
+.wedding__modal-column textarea::placeholder {
+    font-family: Manrope !important;
+    font-size: 14px !important;
+    font-weight: 600 !important;
+    letter-spacing: 0.1em !important;
+    color: #616569 !important;
 }
 
 .wedding__modal-row {
@@ -4761,6 +4776,19 @@ body.noscroll {
     height: 13px;
     background-size: cover;
 }
+
+.wedding-modal__ok-btn {
+    color: #C19B5C;
+    font-size: 18px;
+    font-weight: 700;
+    line-height: 25px;
+    letter-spacing: 0.1em;
+    text-align: left;
+    text-transform: uppercase;
+    display: flex;
+    align-items: center;
+    margin-top: 30px;
+  }
 
 .wedding-modal-close-btn {
     position: absolute;
@@ -4923,6 +4951,10 @@ form input:hover {
     letter-spacing: 0.02em;
     text-align: left;
 
+}
+
+.form-control {
+    border-radius: 0;
 }
 
 .form-control.is-invalid,

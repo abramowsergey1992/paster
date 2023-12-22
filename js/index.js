@@ -813,9 +813,11 @@ if (document.body.classList.contains("sale-page")) {
 		form.addEventListener(
 			"submit",
 			(event) => {
-				if (!form.checkValidity()) {
-					event.preventDefault();
-					event.stopPropagation();
+				event.preventDefault();
+				event.stopPropagation();
+
+				if (form.checkValidity()) {
+					sendForm(form);
 				}
 
 				form.classList.add("was-validated");
@@ -932,5 +934,70 @@ videos.forEach((video) => {
 				"src",
 				video.querySelector("iframe").getAttribute("src")
 			);
+	});
+});
+
+
+async function sendForm(form) {
+	let json;
+	const modalSuccess = document.querySelector(`.modal[data-id="${form.dataset.idSuccess}"]`)
+	const modalFailed = document.querySelector(`.modal[data-id="${form.dataset.idFailed}"]`)
+
+	const response = await fetch(
+		form.getAttribute('action'),
+		{
+			method: 'POST',
+			body: new FormData(form)
+		}
+	);
+
+	if (!response.ok) {
+		console.log('Fetch failed');
+		openModal(form.dataset.idFailed);
+		return;
+	}
+
+	// JSON parsing
+	try {
+		json = await response.json();
+	} catch (error) {
+		console.log('JSON parsing error');
+		openModal(form.dataset.idFailed);
+		return;
+	}
+
+	if (json) {
+		if (json.success) {
+			openModal(form.dataset.idSuccess);
+			setTimeout(() => {
+				closeModal(form.dataset.id);
+			}, 300);
+		} else {
+			openModal(form.dataset.idFailed);
+		}
+	}
+}
+
+const modals = {};
+document.querySelectorAll('.modal[data-id]').forEach(el => {
+	modals[el.dataset.id] = new bootstrap.Modal(el);
+});
+
+function openModal(id) {
+	try {
+		modals[id].show();
+	} catch (error) { }
+}
+
+function closeModal(id) {
+	try {
+		modals[id].hide();
+	} catch (error) { }
+}
+
+document.querySelectorAll('.js-close-modal').forEach(btn => {
+	btn.addEventListener('click', e => {
+		e.preventDefault();
+		closeModal(btn.dataset.modalId);
 	});
 });

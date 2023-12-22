@@ -723,84 +723,176 @@
             </div>
         </div>
         <a href="#" class="wedding__link link base-detail__text_mb-120" data-bs-toggle="modal" data-bs-target="#wedding-modal">проверить дату</a>
-        <div class="modal fade" id="wedding-modal" tabindex="-1" aria-labelledby="wedding-modalLabel" aria-hidden="true">
-            <div class="modal-dialog wedding-modal-dialog">
-              <div class="modal-content wedding-modal-content">
-                <h2 class="wedding-modal__title">заказать</h2>
-                <h3 class="wedding-modal__subtitle">обратный звонок</h3>
-                <form action="#" class="needs-validation" novalidate>
-                    <div class="wedding__modal-column">
-                        
-                        <div class="input-group has-validation">
-                        <input class="form-control" type="text" placeholder="ИМЯ*" required>
-                        <div class="invalid-feedback">
-                            Заполните поле
-                          </div>
-                        </div>
-                        <div class="input-group has-validation">
-                        <input class="form-control" type="text" placeholder="ТЕЛЕФОН*" required>
-                        <div class="invalid-feedback">
-                            Заполните поле
-                          </div>
-                        </div>
-                    </div>
-                    <div class="wedding__modal-row">
-                        <input type="text" placeholder="ДАТА СВАДЬБЫ">
-                        <input type="number" placeholder="КОЛИЧЕСТВО ГОСТЕЙ">
-                    </div>
-                    <span class="wedding-modal__text">Нажимая кнопку «Отправить», я даю свое согласие на обработку моих персональных данных, в соответствии с Федеральным законом от 27.07.2006 года №152-ФЗ «О персональных данных», на условиях и для целей, определенных в Согласии на обработку персональных данных *</span>
-                    <button type="submit" class="wedding-modal__btn btn-reset">отправить</button>
-                </form>
-                
- 
-                  <button type="button" class="wedding-modal-close-btn btn-reset" data-bs-dismiss="modal">
-                    <svg width="27" height="25" viewBox="0 0 27 25" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M26 1L1 24" stroke="#2C2A2A" stroke-width="2" stroke-miterlimit="10"/>
-                    <path d="M1 1L26 24" stroke="#2C2A2A" stroke-width="2" stroke-miterlimit="10"/>
-                    </svg>
-                    </button>
+        <div
+			class="modal fade"
+			id="wedding-modal"
+			data-id="weddingForm"
+			tabindex="-1"
+			aria-labelledby="wedding-modalLabel"
+			aria-hidden="true">
+			<div class="modal-dialog wedding-modal-dialog">
+				<div class="modal-content wedding-modal-content">
+					<h2 class="wedding-modal__title">заказать</h2>
+					<h3 class="wedding-modal__subtitle">обратный звонок</h3>
+					<form
+						action="/json/form.json"
+						class="needs-validation"
+						novalidate
+						method="POST"
+						data-id="weddingForm"
+						data-id-success="weddingSuccess"
+						data-id-failed="weddingFailed"
+					>
+						<div class="wedding__modal-column">
+							<div class="input-group has-validation">
+								<input
+									class="form-control"
+									type="text"
+									placeholder="ИМЯ*"
+									required
+									name="name"
+								/>
+								<div class="invalid-feedback">Заполните поле</div>
+							</div>
+							<div class="input-group has-validation">
+								<input
+									class="form-control"
+									type="text"
+									placeholder="ТЕЛЕФОН*"
+									required
+									name="phone"
+								/>
+								<div class="invalid-feedback">Заполните поле</div>
+							</div>
+						</div>
+						<span class="wedding-modal__text"
+							>Нажимая кнопку «Отправить», я даю свое согласие на
+							обработку моих персональных данных, в соответствии с
+							Федеральным законом от 27.07.2006 года №152-ФЗ «О
+							персональных данных», на условиях и для целей, определенных
+							в Согласии на обработку персональных данных *</span>
+						<button type="submit" class="wedding-modal__btn btn-reset">
+							отправить
+						</button>
+					</form>
 
-              </div>
-            </div>
-          </div>
-          <div class="modal fade" id="wedding-modal-succses" tabindex="-1" aria-labelledby="wedding-modal-succsesLabel" aria-hidden="true">
-            <div class="modal-dialog wedding-modal-dialog">
-              <div class="modal-content wedding-modal-content wedding-modal-content-succses">
-                <h2 class="wedding-modal__title wedding-modal__title-succses">Ваша заявка</h2>
-                <h3 class="wedding-modal__subtitle wedding-modal__subtitle-succses">успешно отрпавлена</h3>
-                
-                <span class="wedding-modal__succses-text">Совсем скоро мы с вами свяжемся</span>
-              
- 
-                <button type="button" class="wedding-modal-close-btn btn-reset" data-bs-dismiss="modal">
-                    <svg width="27" height="25" viewBox="0 0 27 25" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M26 1L1 24" stroke="#2C2A2A" stroke-width="2" stroke-miterlimit="10"/>
-                    <path d="M1 1L26 24" stroke="#2C2A2A" stroke-width="2" stroke-miterlimit="10"/>
-                    </svg>
-                    </button>
+					<button
+						type="button"
+						class="wedding-modal-close-btn btn-reset"
+						data-bs-dismiss="modal">
+						<svg
+							width="27"
+							height="25"
+							viewBox="0 0 27 25"
+							fill="none"
+							xmlns="http://www.w3.org/2000/svg">
+							<path
+								d="M26 1L1 24"
+								stroke="#2C2A2A"
+								stroke-width="2"
+								stroke-miterlimit="10" />
+							<path
+								d="M1 1L26 24"
+								stroke="#2C2A2A"
+								stroke-width="2"
+								stroke-miterlimit="10" />
+						</svg>
+					</button>
+				</div>
+			</div>
+		</div>
+		<div
+			class="modal fade"
+			id="wedding-modal-succses"
+			data-id="weddingSuccess"
+			tabindex="-1"
+			aria-labelledby="wedding-modal-succsesLabel"
+			aria-hidden="true">
+			<div class="modal-dialog wedding-modal-dialog">
+				<div
+					class="modal-content wedding-modal-content wedding-modal-content-succses">
+					<h2 class="wedding-modal__title wedding-modal__title-succses">
+						Ваша заявка
+					</h2>
+					<h3 class="wedding-modal__subtitle wedding-modal__subtitle-succses">
+						успешно отправлена
+					</h3>
 
-              </div>
-            </div>
-          </div>
-          <div class="modal fade" id="wedding-modal-failed" tabindex="-1" aria-labelledby="wedding-modal-failedLabel" aria-hidden="true">
-            <div class="modal-dialog wedding-modal-dialog">
-              <div class="modal-content wedding-modal-content wedding-modal-content-succses">
-                <h2 class="wedding-modal__title wedding-modal__title-succses">что-то не так</h2>
-                <h3 class="wedding-modal__subtitle wedding-modal__subtitle-succses">ошибка отправки</h3>
-                
-                <span class="wedding-modal__succses-text">Что-то пошло не так, заполните форму еще раз</span>
-              
- 
-                <button type="button" class="wedding-modal-close-btn btn-reset" data-bs-dismiss="modal">
-                    <svg width="27" height="25" viewBox="0 0 27 25" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M26 1L1 24" stroke="#2C2A2A" stroke-width="2" stroke-miterlimit="10"/>
-                    <path d="M1 1L26 24" stroke="#2C2A2A" stroke-width="2" stroke-miterlimit="10"/>
-                    </svg>
-                    </button>
+					<span class="wedding-modal__succses-text">Совсем скоро мы с вами свяжемся</span>
 
-              </div>
-            </div>
-          </div>
+					<button class="wedding-modal__ok-btn btn-reset js-close-modal" data-modal-id="weddingSuccess">Хорошо</button>
+
+					<button
+						type="button"
+						class="wedding-modal-close-btn btn-reset"
+						data-bs-dismiss="modal">
+						<svg
+							width="27"
+							height="25"
+							viewBox="0 0 27 25"
+							fill="none"
+							xmlns="http://www.w3.org/2000/svg">
+							<path
+								d="M26 1L1 24"
+								stroke="#2C2A2A"
+								stroke-width="2"
+								stroke-miterlimit="10" />
+							<path
+								d="M1 1L26 24"
+								stroke="#2C2A2A"
+								stroke-width="2"
+								stroke-miterlimit="10" />
+						</svg>
+					</button>
+				</div>
+			</div>
+		</div>
+		<div
+			class="modal fade"
+			id="wedding-modal-failed"
+			data-id="weddingFailed"
+			tabindex="-1"
+			aria-labelledby="wedding-modal-failedLabel"
+			aria-hidden="true">
+			<div class="modal-dialog wedding-modal-dialog">
+				<div
+					class="modal-content wedding-modal-content wedding-modal-content-succses">
+					<h2 class="wedding-modal__title wedding-modal__title-succses">
+						что-то не так
+					</h2>
+					<h3 class="wedding-modal__subtitle wedding-modal__subtitle-succses">
+						ошибка отправки
+					</h3>
+
+					<span class="wedding-modal__succses-text">Что-то пошло не так, заполните форму еще раз</span>
+
+					<button class="wedding-modal__ok-btn btn-reset js-close-modal" data-modal-id="weddingFailed">Понятно</button>
+
+					<button
+						type="button"
+						class="wedding-modal-close-btn btn-reset"
+						data-bs-dismiss="modal">
+						<svg
+							width="27"
+							height="25"
+							viewBox="0 0 27 25"
+							fill="none"
+							xmlns="http://www.w3.org/2000/svg">
+							<path
+								d="M26 1L1 24"
+								stroke="#2C2A2A"
+								stroke-width="2"
+								stroke-miterlimit="10" />
+							<path
+								d="M1 1L26 24"
+								stroke="#2C2A2A"
+								stroke-width="2"
+								stroke-miterlimit="10" />
+						</svg>
+					</button>
+				</div>
+			</div>
+		</div>
           <div class="text-block">
             <h2>Наши возможности</h2>
         </div>
