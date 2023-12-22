@@ -5203,7 +5203,9 @@ body.main-page .hero__block {
 }
 .number-fond__item img {
   width: 100%;
-  aspect-ratio: 922px/547px;
+  -o-object-fit: cover;
+     object-fit: cover;
+  aspect-ratio: 922/547;
 }
 .number-fond__item h4 {
   color: #2C2A2A;

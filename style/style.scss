@@ -5399,7 +5399,8 @@ body.main-page {
 
         img {
             width: 100%;
-            aspect-ratio: 922px/547px
+            object-fit: cover;
+            aspect-ratio: 922/547
         }
 
         h4 {
