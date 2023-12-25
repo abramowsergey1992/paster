@@ -909,14 +909,16 @@ fonds.forEach((fond) => {
 			if (q == "all") {
 				items.forEach((item) => {
 					item.classList.remove("hidden");
+					item.classList.add("swiper-slide");
 				});
 			} else {
 				items.forEach((item) => {
-					console.log(q, item.dataset.filter);
 					if (q == item.dataset.filter) {
 						item.classList.remove("hidden");
+						item.classList.add("swiper-slide");
 					} else {
 						item.classList.add("hidden");
+						item.classList.remove("swiper-slide");
 					}
 				});
 			}
