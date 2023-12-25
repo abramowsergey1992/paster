@@ -4788,7 +4788,7 @@ body.noscroll {
     display: flex;
     align-items: center;
     margin-top: 30px;
-  }
+}
 
 .wedding-modal-close-btn {
     position: absolute;
@@ -5532,4 +5532,9 @@ body.main-page {
             height: 0;
         }
     }
+}
+
+.more-block__btn._hidden,
+.more-block__item._hidden {
+    display: none !important;
 }

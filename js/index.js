@@ -285,13 +285,16 @@ function closeOnClick() {
 	hamb.classList.remove("active");
 	body.classList.remove("noscroll");
 }
-
+function offset(el) {
+	var rect = el.getBoundingClientRect(),
+		scrollLeft = window.pageXOffset || document.documentElement.scrollLeft,
+		scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+	return { top: rect.top + scrollTop, left: rect.left + scrollLeft };
+}
 if (document.body.classList.contains("accommodation-page")) {
 	document.addEventListener("DOMContentLoaded", function () {
-		var header = document.querySelector(".header");
-		var accommodationSection = document.querySelector("#accommodation");
-		var headerLink = document.querySelector(".header__link");
-		var headerLink2 = document.querySelector(".header__link-2");
+		var accommodationSection = document.querySelector(".return-nav");
+
 		var logo = document.querySelector(".fixed-logo");
 		var headerLogo = document.querySelector(".header__logo");
 		var headerTel = document.querySelector(".header__tel");
@@ -312,19 +315,11 @@ if (document.body.classList.contains("accommodation-page")) {
 		});
 
 		function handleScroll() {
-			var accommodationOffsetTop = accommodationSection.offsetTop;
+			var accommodationOffsetTop = offset(accommodationSection).top - 150;
+
 			var scrollPosition = window.pageYOffset;
 
 			if (scrollPosition >= accommodationOffsetTop) {
-				header.style.cssText = `
-    position: fixed;
-    z-index: 5;
-    background: #FFF;
-    width: 100%;
-    top: 0;
-    padding: 25px 0;
-    transition: all 0.5s ease;
-  `;
 				headerBottom.style.cssText = `
     display: block;
     padding: 20px 0 0;
@@ -333,15 +328,6 @@ if (document.body.classList.contains("accommodation-page")) {
   `;
 				// ... Other elements style changes ...
 			} else {
-				header.style.cssText = `
-    position: '';
-    z-index: '';
-    background: '';
-    width: '';
-    top: '';
-    padding: '';
-    transition: all 0.5s ease;
-  `;
 				headerBottom.style.cssText = `
     display: '';
     padding: '';
@@ -352,70 +338,29 @@ if (document.body.classList.contains("accommodation-page")) {
 			}
 
 			if (scrollPosition >= accommodationOffsetTop) {
-				header.style.position = "fixed";
-				header.style.zIndex = "5";
-				header.style.background = "#FFF";
-				header.style.width = "100%";
-				header.style.top = "0";
-				header.style.padding = "25px 0";
 				headerBottom.style.display = "block";
 				headerBottom.style.padding = "20px 0 0";
 				headerBottom.style.borderTop = "1px solid #B0AAA1";
 				headerFlex.style.padding = "0 0 20px";
 				headerBlock.style.marginTop = "unset";
 				headerBlock1.style.marginTop = "unset";
-				// link style //
-				headerLink.style.color = "#2C2A2A";
-				headerLink.classList.add("hover");
-				headerLink2.style.color = "#2C2A2A";
-				headerLink2.classList.add("hover");
-				headerTel.style.color = "#2C2A2A";
-				headerTel.classList.add("hover");
-				// logo //
-				logo.style.display = "block";
-				headerLogo.style.display = "none";
 
-				// burger //
-				bar.style.background = "#2C2A2A";
-				bar2.style.background = "#2C2A2A";
-				bar3.style.background = "#2C2A2A";
 				// tabs //
 				roomsNav.style.marginBottom = "0";
 				roomsNav.classList.add("rooms__nav--sticky");
 				headerBottom.appendChild(roomsNav);
-				// icon //
-				telIcon.style.stroke = "#2C2A2A";
 			} else {
-				header.style.position = "";
-				header.style.position = "";
-				header.style.zIndex = "";
-				header.style.background = "";
-				header.style.width = "";
-				header.style.top = "";
-				header.style.padding = "";
 				headerBottom.style.display = "";
 				headerBottom.style.padding = "";
 				headerBottom.style.borderTop = "";
 				headerFlex.style.padding = "";
 				headerBlock.style.marginTop = "";
 				headerBlock1.style.marginTop = "";
-				// link style //
-				headerLink.style.color = "";
-				headerLink2.style.color = "";
-				headerTel.style.color = "";
-				// logo //
-				logo.style.display = "";
-				headerLogo.style.display = "";
-				// burger //
-				bar.style.background = "";
-				bar2.style.background = "";
-				bar3.style.background = "";
+
 				// tabs //
 				roomsNav.style.marginBottom = "";
 				roomsNav.classList.remove("rooms__nav--sticky");
 				reterunNav.appendChild(roomsNav);
-				// tel-icon //
-				telIcon.style.stroke = "";
 			}
 		}
 
@@ -938,23 +883,50 @@ videos.forEach((video) => {
 			);
 	});
 });
+document.querySelectorAll(".more-block").forEach((block) => {
+	const count = block.dataset.count;
+	const btn = block.querySelector(".more-block__btn");
 
+	let i = 1;
+	block.querySelectorAll(".more-block__item").forEach((item) => {
+		if (i > count) {
+			item.classList.add("_hidden");
+		}
+		i++;
+	});
+	if (block.querySelectorAll(".more-block__item._hidden").length == 0) {
+		btn.classList.add("_hidden");
+	}
+	btn.addEventListener("click", function () {
+		let i = 1;
+		block.querySelectorAll(".more-block__item._hidden").forEach((item) => {
+			if (i <= count) {
+				item.classList.remove("_hidden");
+			}
+			i++;
+		});
+		if (block.querySelectorAll(".more-block__item._hidden").length == 0) {
+			btn.classList.add("_hidden");
+		}
+	});
+});
 
 async function sendForm(form) {
 	let json;
-	const modalSuccess = document.querySelector(`.modal[data-id="${form.dataset.idSuccess}"]`)
-	const modalFailed = document.querySelector(`.modal[data-id="${form.dataset.idFailed}"]`)
-
-	const response = await fetch(
-		form.getAttribute('action'),
-		{
-			method: 'POST',
-			body: new FormData(form)
-		}
+	const modalSuccess = document.querySelector(
+		`.modal[data-id="${form.dataset.idSuccess}"]`
+	);
+	const modalFailed = document.querySelector(
+		`.modal[data-id="${form.dataset.idFailed}"]`
 	);
 
+	const response = await fetch(form.getAttribute("action"), {
+		method: "POST",
+		body: new FormData(form),
+	});
+
 	if (!response.ok) {
-		console.log('Fetch failed');
+		console.log("Fetch failed");
 		openModal(form.dataset.idFailed);
 		return;
 	}
@@ -963,7 +935,7 @@ async function sendForm(form) {
 	try {
 		json = await response.json();
 	} catch (error) {
-		console.log('JSON parsing error');
+		console.log("JSON parsing error");
 		openModal(form.dataset.idFailed);
 		return;
 	}
@@ -981,24 +953,24 @@ async function sendForm(form) {
 }
 
 const modals = {};
-document.querySelectorAll('.modal[data-id]').forEach(el => {
+document.querySelectorAll(".modal[data-id]").forEach((el) => {
 	modals[el.dataset.id] = new bootstrap.Modal(el);
 });
 
 function openModal(id) {
 	try {
 		modals[id].show();
-	} catch (error) { }
+	} catch (error) {}
 }
 
 function closeModal(id) {
 	try {
 		modals[id].hide();
-	} catch (error) { }
+	} catch (error) {}
 }
 
-document.querySelectorAll('.js-close-modal').forEach(btn => {
-	btn.addEventListener('click', e => {
+document.querySelectorAll(".js-close-modal").forEach((btn) => {
+	btn.addEventListener("click", (e) => {
 		e.preventDefault();
 		closeModal(btn.dataset.modalId);
 	});

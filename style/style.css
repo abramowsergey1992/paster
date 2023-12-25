@@ -5333,4 +5333,9 @@ body.main-page .hero__block {
 .number-fond__nav::-webkit-scrollbar {
   width: 0;
   height: 0;
+}
+
+.more-block__btn._hidden,
+.more-block__item._hidden {
+  display: none !important;
 }/*# sourceMappingURL=style.css.map */
