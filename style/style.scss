@@ -5539,6 +5539,21 @@ body.main-page {
     display: none !important;
 }
 
+.sale-page {
+    .white-hero__descr {
+        margin-bottom: 120px;
+
+        @media(max-width:992px) {
+            margin-bottom: 60px;
+        }
+
+        @media(max-width:720px) {
+            margin-bottom: 0px;
+        }
+
+
+    }
+}
 
 .main-page {
     @media(max-width: 576px) {

@@ -5340,6 +5340,20 @@ body.main-page .hero__block {
   display: none !important;
 }
 
+.sale-page .white-hero__descr {
+  margin-bottom: 120px;
+}
+@media (max-width: 992px) {
+  .sale-page .white-hero__descr {
+    margin-bottom: 60px;
+  }
+}
+@media (max-width: 720px) {
+  .sale-page .white-hero__descr {
+    margin-bottom: 0px;
+  }
+}
+
 @media (max-width: 576px) {
   .main-page .events__img-576 {
     margin-bottom: 20px;
