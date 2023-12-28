@@ -5538,3 +5538,14 @@ body.main-page {
 .more-block__item._hidden {
     display: none !important;
 }
+
+
+.main-page {
+    @media(max-width: 576px) {
+        .events__img-576 {
+            margin-bottom: 20px;
+        }
+
+
+    }
+}

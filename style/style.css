@@ -5338,4 +5338,10 @@ body.main-page .hero__block {
 .more-block__btn._hidden,
 .more-block__item._hidden {
   display: none !important;
+}
+
+@media (max-width: 576px) {
+  .main-page .events__img-576 {
+    margin-bottom: 20px;
+  }
 }/*# sourceMappingURL=style.css.map */
