@@ -451,7 +451,7 @@
     margin-bottom: 50px;
   }
   .sale__subtitle {
-    line-height: 0;
+    margin-bottom: 80px;
   }
   .base-detail {
     padding-bottom: 140px;
@@ -621,7 +621,7 @@
     left: -50px;
   }
   .room-round-3 {
-    left: -131px;
+    left: -100px;
   }
   .gaiety-hero__descr {
     margin-bottom: 50px;
@@ -1197,9 +1197,6 @@
   .news__bottom-section-title {
     margin-bottom: 30px;
   }
-  .hero__block {
-    background-image: url(../img/main/hero_bg-1440.jpg);
-  }
   .map__frame {
     height: 712px;
   }
@@ -1660,7 +1657,6 @@
   .hero__block {
     padding: 20px 0 50px;
     margin-bottom: 30px;
-    background-image: url(../img/main/hero_bg-720.jpg);
   }
   .hero__form {
     height: 74px;
@@ -2951,12 +2947,6 @@
   }
   .bath__room-flexbox_column {
     flex-direction: row;
-  }
-  .header__tel-720 {
-    margin-top: -13px;
-  }
-  .header__block-1 {
-    margin-top: -25px;
   }
   .main-sub-image-contacts {
     max-width: 50%;
@@ -4602,4 +4592,22 @@
     letter-spacing: -1.8px;
     text-transform: uppercase;
   }
+}
+@media (max-width: 576px) {
+  .bath-img {
+    margin-bottom: 60px;
+    max-width: 100%;
+  }
+}
+.wedding-new-slide {
+  position: relative;
+}
+.wedding-new-slide .base-detail__block-link::before {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  display: block;
+  content: "";
 }/*# sourceMappingURL=media.css.map */

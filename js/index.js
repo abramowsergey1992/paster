@@ -249,6 +249,8 @@ const hamb = document.querySelector("#hamb");
 const popup = document.querySelector("#popup");
 const menu = document.querySelector("#menu").cloneNode(1);
 const closeButton = document.querySelector("#close-btn");
+const burgerImg = document.querySelector(".burger__img");
+
 const body = document.body;
 
 hamb.addEventListener("click", hambHandler);
@@ -265,6 +267,7 @@ function renderPopup() {
 	popup.appendChild(menu);
 }
 
+burgerImg.addEventListener("click", closeMenu);
 closeButton.addEventListener("click", closeMenu);
 
 function closeMenu() {
@@ -600,7 +603,6 @@ if (document.body.classList.contains("loyalty-page")) {
 			fixedLogo.style.display = "block";
 			logo.style.display = "none";
 		} else {
-			header.style.position = "static";
 			header.style.top = "";
 			header.style.width = "";
 			header.style.backgroundColor = "";
