@@ -1200,6 +1200,8 @@ body.noscroll {
 
 .burger {
   max-height: 40px;
+  display: flex;
+  align-items: center;
 }
 
 .burger__img img {
@@ -5529,4 +5531,17 @@ body.main-page .hero__block {
 }
 .two-photo img:last-child {
   transform: rotate(22deg) translateX(-5%);
+}
+
+.burger__list {
+  min-height: 455px;
+}
+
+@media (max-width: 1440px) {
+  .burger__list {
+    min-height: 305px;
+  }
+}
+.rounds {
+  margin-bottom: 100px;
 }/*# sourceMappingURL=style.css.map */
